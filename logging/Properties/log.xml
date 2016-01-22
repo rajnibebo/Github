@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+    <appender name="std-out" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{MM/dd HH:mm:ss} %m(%p)%n"/>
+        </layout>
+    </appender>
+
+    <appender name="ac-out" class="org.apache.log4j.DailyRollingFileAppender">
+    	<param name="File" value="C:/Outpost/Logs/ac.log"/>
+	    <param name="Threshold" value="debug"/>
+    	<param name="DatePattern" value="'.'yyyyMMdd'.data'" />
+	    <layout class="org.apache.log4j.PatternLayout">
+    	    <!--           "%d{MM/dd HH:mm:ss} %c{1}>%m(%p)%n"   -->
+        	<param name="ConversionPattern" value="%d{MM/dd HH:mm:ss} %m(%p)%n"/>
+    	</layout>
+    </appender>
+
+    <appender name="db-out" class="org.apache.log4j.DailyRollingFileAppender">
+    	<param name="File" value="C:/Outpost/Logs/db.log"/>
+    	<param name="Threshold" value="debug"/>
+	    <param name="DatePattern" value="'.'yyyyMMdd'.data'" />
+    	<layout class="org.apache.log4j.PatternLayout">
+        	<!--           "%d{MM/dd HH:mm:ss} %c{1}>%m(%p)%n"   -->
+	        <param name="ConversionPattern" value="%d{MM/dd HH:mm:ss} %m(%p)%n"/>
+    	</layout>
+    </appender>
+
+    <appender name="jcache-out" class="org.apache.log4j.DailyRollingFileAppender">
+	    <param name="File" value="C:/Outpost/Logs/jcache.log"/>
+    	<param name="Threshold" value="debug"/>
+    	<param name="DatePattern" value="'.'yyyyMMdd'.data'" />
+	    <layout class="org.apache.log4j.PatternLayout">
+        	<!--           "%d{MM/dd HH:mm:ss} %c{1}>%m(%p)%n"   -->
+        	<param name="ConversionPattern" value="%d{MM/dd HH:mm:ss} %m(%p)%n"/>
+    	</layout>
+    </appender>
+
+    <appender name="common-out" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="C:/Outpost/Logs/common.log"/>
+        <param name="Threshold" value="debug"/>
+        <param name="DatePattern" value="'.'yyyyMMdd'.data'" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <!--           "%d{MM/dd HH:mm:ss} %c{1}>%m(%p)%n"   -->
+            <param name="ConversionPattern" value="%d{MM/dd HH:mm:ss} [%c]%m(%p)%n"/>
+        </layout>
+    </appender>
+
+    <appender name="search-out" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="C:/Outpost/Logs/searchagent.log"/>
+        <param name="Threshold" value="debug"/>
+        <param name="DatePattern" value="'.'yyyyMMdd'.data'" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <!--           "%d{MM/dd HH:mm:ss} %c{1}>%m(%p)%n"   -->
+            <param name="ConversionPattern" value="%d{MM/dd HH:mm:ss} %m(%p)%n"/>
+        </layout>
+    </appender>
+
+	<appender name="slar-out" class="org.apache.log4j.DailyRollingFileAppender">
+		 <param name="File" value="C:/Outpost/Logs/searchagent_slar.log"/>
+		 <param name="Threshold" value="debug"/>
+		 <param name="DatePattern" value="'.'yyyyMMdd'.data'" />
+		 <layout class="org.apache.log4j.PatternLayout">
+			 <!--           "%d{MM/dd HH:mm:ss} %c{1}>%m(%p)%n"   -->
+			 <param name="ConversionPattern" value="%d{MM/dd HH:mm:ss} %m(%p)%n"/>
+		 </layout>
+	 </appender>
+
+	<appender name="request-time" class="org.apache.log4j.DailyRollingFileAppender">
+	<param name="File" value="C:/Outpost/Logs/reqTimes.log"/>
+	<param name="DatePattern" value="'.'yyyyMMdd'.data'" />
+	<layout class="org.apache.log4j.PatternLayout">
+		<param name="ConversionPattern" value="%d{MM/dd HH:mm:ss}%m(%p)%n"/>
+	</layout>
+	</appender>
+
+	<!-- don't change this appender, for log analysis only(SLAR) -->
+    <!-- appender name="meter-out" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/Outpost/Logs/searchagent_slar"/>
+        <param name="Threshold" value="fatal"/>
+        <param name="DatePattern" value="'.'yyyyMMdd'.data'" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{MM/dd HH:mm:ss} %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelMatchFilter">
+            <param name="LevelToMatch" value="fatal"/>
+            <param name="AcceptOnMatch" value="true"/>
+        </filter>
+        <filter class="org.apache.log4j.varia.DenyAllFilter"/>
+    </appender -->
+
+	<category name="com.frys.ac">
+        <priority value="ERROR"/>
+        <appender-ref ref="ac-out"/>
+    </category>
+    <category name="com.frys.common.db">
+    	<priority value="debug"/>
+    	<appender-ref ref="db-out"/>
+    </category>
+	 <category name="com.rajni">
+    	<priority value="info"/>
+    	<appender-ref ref="ac-out"/>
+    </category>
+    <category name="com.frys.common.jcache">
+	    <priority value="debug"/>
+    	<appender-ref ref="jcache-out"/>
+    </category>
+    <category name="com.frys.common">
+    	<priority value="debug"/>
+    	<appender-ref ref="common-out"/>
+   	</category>
+    <category name="com.frys.util">
+	    <priority value="info"/>
+    	<appender-ref ref="slar-out"/>
+    </category>
+    <category name="com.frys.searchagent">
+	    <priority value="info"/>
+    	<appender-ref ref="search-out"/>
+    </category>
+	<category name="com.Outpost.Business.Zeus">
+		<priority value="${log.prioval.com.Outpost.Business.Zeus}"/>
+	</category>
+
+    <root>
+        <level value="info" />
+        <appender-ref ref="std-out" />
+        <!-- appender-ref ref="meter-out" / -->
+    </root>
+</log4j:configuration>
