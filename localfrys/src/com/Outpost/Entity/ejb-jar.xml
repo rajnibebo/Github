@@ -1,0 +1,58 @@
+<!DOCTYPE ejb-jar PUBLIC '-//Sun Microsystems, Inc.//DTD Enterprise JavaBeans 2.0//EN' 'http://java.sun.com/dtd/ejb-jar_2_0.dtd'>
+
+
+<!-- Generated XML! -->
+
+<ejb-jar>
+	<enterprise-beans>
+		<entity>
+			<ejb-name>Account</ejb-name>
+			<home>com.Outpost.Entity.AccountHome</home>
+			<remote>com.Outpost.Entity.AccountRemote</remote>
+			<ejb-class>com.Outpost.Entity.Account</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>java.lang.Long</prim-key-class>
+			<reentrant>False</reentrant>
+			<abstract-schema-name>Account</abstract-schema-name>
+			<cmp-field>
+				<field-name>accountId</field-name>
+			</cmp-field>
+			<cmp-field>
+				<field-name>storeId</field-name>
+			</cmp-field>
+			<cmp-field>
+				<field-name>parentAccountId</field-name>
+			</cmp-field>
+			<cmp-field>
+				<field-name>userOwnerId</field-name>
+			</cmp-field>
+			<cmp-field>
+				<field-name>dateTime</field-name>
+			</cmp-field>
+			<primkey-field>accountId</primkey-field>
+			<query>
+				<query-method>
+					<method-name>findByOwnerUserId</method-name>
+					<method-params>
+						<method-param>java.lang.Long</method-param>
+					</method-params>
+				</query-method>
+
+				<ejb-ql><![CDATA[SELECT DISTINCT OBJECT(o) FROM Account o WHERE (o.userOwnerId = ?1)]]></ejb-ql>
+			</query>
+		</entity>
+		
+	</enterprise-beans>
+
+	<assembly-descriptor>
+		<container-transaction>
+			<method>
+				<ejb-name>Account</ejb-name>
+				<method-name>*</method-name>
+			</method>
+			<trans-attribute>Supports</trans-attribute>
+		</container-transaction>
+		
+	</assembly-descriptor>
+
+</ejb-jar>

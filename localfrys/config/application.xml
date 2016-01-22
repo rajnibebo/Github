@@ -15,4 +15,7 @@
     <module>
         <ejb>com.Outpost.Business.Ssb.jar</ejb>
     </module>
+     <module>
+        <ejb>com.Outpost.Entity.jar</ejb>
+    </module>
 </application>

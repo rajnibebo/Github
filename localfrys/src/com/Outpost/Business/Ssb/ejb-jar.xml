@@ -4,26 +4,25 @@
 <!-- Generated XML! -->
 
 <ejb-jar>
-  <enterprise-beans>
-   
-    <session>
-      <ejb-name>ProcessShopList</ejb-name>
-      <home>com.Outpost.Business.Ssb.ProcessShopListHome</home>
-      <remote>com.Outpost.Business.Ssb.ProcessShopListRemote</remote>
-      <ejb-class>com.Outpost.Business.Ssb.ProcessShopList</ejb-class>
-      <session-type>Stateless</session-type>
-      <transaction-type>Container</transaction-type>
-    </session>
-  </enterprise-beans>
+	<enterprise-beans>
+		<session>
+			<ejb-name>ProcessShopList</ejb-name>
+			<home>com.Outpost.Business.Ssb.ProcessShopListHome</home>
+			<remote>com.Outpost.Business.Ssb.ProcessShopListRemote</remote>
+			<ejb-class>com.Outpost.Business.Ssb.ProcessShopList</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+		</session>
+	</enterprise-beans>
 
-  <assembly-descriptor>
-    <container-transaction>
-      <method>
-        <ejb-name>ProcessShopList</ejb-name>
-        <method-name>parseOrder</method-name>
-      </method>
-      <trans-attribute>Never</trans-attribute>
-    </container-transaction>
-  </assembly-descriptor>
+	<assembly-descriptor>
+		<container-transaction>
+			<method>
+				<ejb-name>ProcessShopList</ejb-name>
+				<method-name>parseOrder</method-name>
+			</method>
+			<trans-attribute>Never</trans-attribute>
+		</container-transaction>
+	</assembly-descriptor>
 
 </ejb-jar>

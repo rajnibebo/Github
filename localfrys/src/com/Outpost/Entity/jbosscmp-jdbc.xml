@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE jbosscmp-jdbc PUBLIC "-//JBoss//DTD JBOSSCMP-JDBC 4.0//EN"
+        "http://www.jboss.org/j2ee/dtd/jbosscmp-jdbc_4_0.dtd">
+        
+<jbosscmp-jdbc>
+	<defaults>
+		<datasource>webdPool</datasource>
+		<datasource-mapping>mySQL</datasource-mapping>
+	</defaults>
+	<enterprise-beans>
+		<entity>
+			<ejb-name>Account</ejb-name>
+			<create-table>true</create-table>
+			<table-name>account</table-name>
+			<cmp-field>
+				<field-name>accountId</field-name>
+				<column-name>account_id</column-name>
+			</cmp-field>
+			<cmp-field>
+				<field-name>storeId</field-name>
+				<column-name>store_id</column-name>
+			</cmp-field>
+			<cmp-field>
+				<field-name>parentAccountId</field-name>
+				<column-name>parent_account_id</column-name>
+			</cmp-field>
+			<cmp-field>
+				<field-name>userOwnerId</field-name>
+				<column-name>owner_user_id</column-name>
+			</cmp-field>
+			<cmp-field>
+				<field-name>dateTime</field-name>
+				<column-name>datetime</column-name>
+			</cmp-field>
+		</entity>
+	</enterprise-beans>
+</jbosscmp-jdbc>

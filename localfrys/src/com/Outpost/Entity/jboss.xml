@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+<!DOCTYPE jboss
+  PUBLIC "-//JBoss//DTD JBOSS 4.0//EN" "http://www.jboss.org/j2ee/dtd/jboss_4_0.dtd"> -->
+  
+<!DOCTYPE jboss PUBLIC "-//JBoss//DTD JBOSS 5.0//EN" "http://www.jboss.org/j2ee/dtd/jboss_5_0.dtd"> 
+<jboss>
+	<!-- <loader-repository>
+		com.frys:loader=web-app.war
+      <loader-repository-config>java2ParentDelegation=true</loader-repository-config>
+	</loader-repository>  -->
+	<enterprise-beans>
+		<entity>
+			<ejb-name>Account</ejb-name>
+			<jndi-name>com.Outpost.Entity.Account</jndi-name>
+			<clustered>True</clustered>
+		</entity>
+	</enterprise-beans>
+	
+	<container-configurations>
+        <container-configuration >
+            <container-name>Standard CMP 2.x EntityBean</container-name>
+            <commit-option>D</commit-option>
+        </container-configuration>
+     </container-configurations>
+</jboss>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE jboss-web PUBLIC
+          "-//JBoss//DTD Web Application 5.0//EN"
+          "http://www.jboss.org/j2ee/dtd/jboss-web_5_0.dtd"> 
+<!--
+<!DOCTYPE jboss-web PUBLIC "-//JBoss//DTD Web Application 2.4//EN"
+ 	        "http://www.jboss.org/j2ee/dtd/jboss-web_4_0.dtd"> -->
+<jboss-web>
+
+   <!--  <class-loading java2ClassLoadingCompliance='true'>
+    	<loader-repository>
+			com.frys:loader=web-app.war
+      		<loader-repository-config>java2ParentDelegation=true</loader-repository-config>
+		</loader-repository>
+    </class-loading> -->
+    
+    <replication-config>	
+    	<replication-trigger>SET_AND_NON_PRIMITIVE_GET</replication-trigger>
+    	<replication-granularity>SESSION</replication-granularity>
+    	<replication-field-batch-mode>true</replication-field-batch-mode>
+    </replication-config> 
+    
+    <resource-ref>  
+        <res-ref-name>webdPool</res-ref-name>
+        <jndi-name>webdPool</jndi-name>
+    </resource-ref>    
+</jboss-web>

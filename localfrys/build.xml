@@ -37,8 +37,23 @@
                 location="${dir.dtd}/ejb-jar_2_0.dtd" />
             <jboss destdir="${dir.build}/${dir.temp}" />
             <include name="**/ejb-jar.xml"/>
-            <exclude name="**/jboss.xml"/>            
+            <exclude name="**/jboss.xml"/> 
+        	<include name="**/jbosscmp-jdbc.xml"/>   
         </ejbjar>
+    	
+    	
+ <jar jarfile="${dir.build}/${dir.temp}/com.Outpost.Entity.jar">
+    	            <metainf dir="${dir.src}/com/Outpost/Entity">
+    	                <include name="**/ejb-jar.xml"/>
+    	                <include name="**/jboss.xml"/>            
+    	                <include name="**/jbosscmp-jdbc.xml"/>            
+    	            </metainf>
+    	            <fileset dir="${dir.build}/${dir.classes}">
+    	                <include name="/com/Outpost/Entity/**"/>
+    	            </fileset>
+    	 </jar>
+
+    	
     </target>
 
     <target name="prepare-war" depends="ejbjar">
@@ -59,6 +74,7 @@
             </lib>
             <lib dir="${dir.build}/${dir.temp}">
                 <include name="com.Outpost.jar"/>
+            	<include name="com.Outpost.Entity.jar"/>
                 <!-- <include name="searchagent.jar"/> -->
             </lib>
             
