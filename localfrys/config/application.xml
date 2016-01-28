@@ -18,4 +18,7 @@
      <module>
         <ejb>com.Outpost.Entity.jar</ejb>
     </module>
+     <module>
+        <ejb>com.frys.business.cart.ejb.jar</ejb>
+    </module>
 </application>

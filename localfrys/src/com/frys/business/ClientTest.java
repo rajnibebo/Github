@@ -22,6 +22,9 @@ import com.Outpost.Business.Ssb.ProcessShopListHome;
 import com.Outpost.Business.Ssb.ProcessShopListRemote;
 import com.Outpost.Entity.AccountHome;
 import com.Outpost.Entity.AccountRemote;
+import com.frys.business.cart.FrysShoppingCart;
+import com.frys.business.cart.FrysShoppingCartHome;
+import com.frys.business.cart.FrysShoppingCartPK;
 import com.frys.common.logger.Log;
 
 /**
@@ -30,6 +33,7 @@ import com.frys.common.logger.Log;
  */
 public class ClientTest {
 
+	private static long id = 2;
 	/**
 	 * @param args
 	 */
@@ -48,20 +52,27 @@ public class ClientTest {
 			remote.parseOrder();
 			System.out.println("After parse order...");
 			
-			Object obj1 = ctx.lookup("com.Outpost.Entity.Account");
+			/*Object obj1 = ctx.lookup("com.Outpost.Entity.Account");
 			AccountHome actHome = (AccountHome) obj1;
 			AccountRemote actRemote = actHome.create(new Long(6),new Long(103), new Long(0),new Long(3),new Timestamp(new Date().getTime()));
 			System.out.println(actRemote.getAccountId()+" created..");
 			
-			/*actRemote = actHome.findByPrimaryKey(new Long(1));
+			actRemote = actHome.findByPrimaryKey(new Long(1));
 			System.out.println(actRemote.getPrimaryKey()+" "+actRemote.getUserOwnerId()+" "+actRemote.getStoreId()+" ");
 			
 			actRemote = actHome.findByPrimaryKey(new Long(2));
 			System.out.println(actRemote.getPrimaryKey()+" "+actRemote.getUserOwnerId());
-			*/
-			actRemote = actHome.findByPrimaryKey(new Long(5));
-			System.out.println(actRemote.getPrimaryKey()+" "+actRemote.getUserOwnerId());
 			
+			actRemote = actHome.findByPrimaryKey(new Long(5));
+			System.out.println(actRemote.getPrimaryKey()+" "+actRemote.getUserOwnerId());*/
+			
+			Object obj2 = ctx.lookup("ShoppingCart");
+			FrysShoppingCartHome cartHome = (FrysShoppingCartHome) obj2;
+			FrysShoppingCart cartRemote = cartHome.create(++id, 103);
+			//System.out.println(cartRemote.getCartNumber());
+			//System.out.println(cartRemote.getUserId());
+			System.out.println("Cart creation completed .. Now find the created cart..");
+			System.out.println(cartHome.findByPrimaryKey(new FrysShoppingCartPK()));
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
