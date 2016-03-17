@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+ http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd"><bean id="provider"
+		class="com.rajni.springbasics.setterinjection.xml.HelloWorldMessageProvider"></bean>
+	 <bean id="renderer" class="com.rajni.springbasics.setterinjection.xml.StandardOutMessageRenderer" 
+		p:messageProvider-ref="provider"></bean> 
+	<bean id="msgRender" class="com.rajni.springbasics.setterinjection.xml.StandardOutMessageRenderer" >
+		<property name="provider">
+			<ref bean="provider"/>
+		</property>
+	</bean>
+	
+	<bean id="confProvider1" class="com.rajni.springbasics.setterinjection.xml.ConfigurableMesage">
+		<constructor-arg>
+			<value>Rajni here</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="confProvider2" class="com.rajni.springbasics.setterinjection.xml.ConfigurableMesage" c:msg="Another configuration through xml">
+	</bean>
+	
+	<bean id="injectSimple" class="com.rajni.springbasics.setterinjection.xml.InjectSimple">
+		<property name="name">
+			<value>Rajni</value>
+		</property>
+		<property name="age">
+			<value>21</value>
+		</property>
+		<property name="ageInSeconds">
+			<value>10000000</value>
+		</property>
+		<property name="programmer">
+			<value>true</value>
+		</property>
+	</bean>
+</beans>

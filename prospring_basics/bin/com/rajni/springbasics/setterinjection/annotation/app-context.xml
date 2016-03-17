@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+ http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+	<context:component-scan
+		base-package="com.rajni.springbasics.setterinjection.annotation" />
+	<context:annotation-config />
+	
+	<bean id="msg" class="java.lang.String" c:_0="My name is Rajni !!!!!!!!"></bean>
+	<bean id="num" class="java.lang.String" c:_0="My name is Rajni $$$$$$"></bean>
+	
+	<util:map id="maps" map-class="java.util.HashMap">
+		<entry key="First_Name">
+			<value>Rajni</value>
+		</entry>
+		<entry key="Message">
+			<ref bean="msg"/>
+		</entry>
+	</util:map>
+	
+	<util:list id="list">
+		<value>rajni</value>
+		<ref bean="num"/>
+	</util:list>
+	
+	<util:set id="sets">
+		<value>rajni</value>
+		<ref bean="num"/>
+	</util:set>
+	
+	<util:properties id="props">
+		<prop key="fisrtName">
+			Rajni
+		</prop>
+		<prop key="lastName">
+			Ubhi
+		</prop>
+	</util:properties>
+</beans>

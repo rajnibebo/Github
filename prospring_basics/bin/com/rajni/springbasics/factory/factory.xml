@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+ http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+	<bean id="shaDigest" class="com.rajni.springbasics.factory.MessageDigestFactoryBean">
+		<property name="algorithmName">
+			<value>SHA1</value>
+		</property>
+	</bean>
+	
+	<bean id="defaultDigest" class="com.rajni.springbasics.factory.MessageDigestFactoryBean"></bean>
+	
+	<bean id="digest" class="com.rajni.springbasics.factory.MessageDigester">
+		<property name="digest1">
+			<ref local="shaDigest"/>
+		</property>
+		<property name="digest2">
+			<ref local="defaultDigest"/>
+		</property>
+	</bean>
+	
+	<bean id="shaDigestFactory" class="com.rajni.springbasics.factory.MessageDigestFactory">
+		<property name="algorithmName">
+			<value>SHA1</value>
+		</property>
+	</bean>
+	
+	<bean id="defaultDigestFactory" class="com.rajni.springbasics.factory.MessageDigestFactory"></bean>
+	
+	<bean id="shaBean" factory-bean="shaDigestFactory" factory-method="createInstance"></bean>
+	
+	<bean id="defaultBean" factory-bean="defaultDigestFactory" factory-method="createInstance"></bean>
+	
+	<bean id="digestBean" class="com.rajni.springbasics.factory.MessageDigester">
+		<property name="digest1">
+			<ref local="shaBean"/>
+		</property>
+		<property name="digest2">
+			<ref local="defaultBean"/>
+		</property>
+	</bean>
+</beans>

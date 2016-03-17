@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+ http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+	<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+		<property name="customEditors">
+			<map>
+				<entry key="java.util.Date">
+					<bean class="org.springframework.beans.propertyeditors.CustomDateEditor">
+						<constructor-arg>
+							<bean class="java.text.SimpleDateFormat">
+								<constructor-arg value="yyyy-MM-dd"/>
+							</bean>
+						</constructor-arg>
+						<constructor-arg value="true"/>
+					</bean>
+				</entry>
+				<entry key="java.lang.String">
+					<bean class="org.springframework.beans.propertyeditors.StringTrimmerEditor">
+						<constructor-arg value="true"/>
+					</bean>
+				</entry>
+			</map>	
+		</property>
+	</bean>
+	
+	<bean id="builtin" class="com.rajni.springbasics.pe.PropertyEditorBean">
+				<property name="bytes">
+					<value>Hello World</value>
+				</property>
+				<property name="cls">
+					<value>java.lang.String</value>
+				</property>
+				<property name="trueOrFalse">
+					<value>true</value>
+				</property>
+				<property name="stringList">
+					<util:list>
+						<value>Rajni</value>
+						<value>Ubhi</value>
+					</util:list>
+				</property>
+				<property name="date">
+					<value>2016-03-16</value>
+				</property>
+				<property name="floatValue">
+					<value>5.3</value>
+				</property>
+				<property name="file">
+					<value>C:/Users/rajni.ubhi/Pictures/watch.jpg</value>
+				</property>
+				<property name="stream">
+					<value>file:C:/Users/rajni.ubhi/Pictures/watch.jpg</value>
+				</property>
+				<property name="locale">
+					<value>en_us</value>
+				</property>
+				<property name="pattern">
+					<value>a*b</value>
+				</property>
+				<property name="properties">
+					<value>
+						name=Rajni
+						age=22
+					</value>
+				</property>
+				<property name="trimSize">
+					<value>      My Name Is Rajni     ... ###</value>
+				</property>
+				<property name="url">
+					<value>http://www.google.com</value>
+				</property>
+		</bean>
+		
+		
+		<bean name="nameCustomEditor" class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+			<property name="customEditors">
+				<map>
+					<entry key="com.rajni.springbasics.pe.Name">
+						<bean class="com.rajni.springbasics.pe.NameProprtyEditor"/>
+					</entry>
+				</map>
+			</property>
+		</bean>
+		
+		<bean id="example" class="com.rajni.springbasics.pe.CustomEditorExample">
+			<property name="name">
+				<value>Rajni Ubhi</value>
+			</property>
+		</bean>
+		
+</beans>
