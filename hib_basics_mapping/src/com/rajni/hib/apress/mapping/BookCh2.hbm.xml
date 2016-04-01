@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 31, 2016 1:51:55 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping package="com.rajni.hib.apress.mapping" auto-import="false">
+<import class="BookCh2" rename="bkch2"/>
+    <class name="com.rajni.hib.apress.mapping.BookCh2" table="BOOK_CH2">
+        <id name="isbn" type="java.lang.Long">
+            <column name="ISBN" />
+            <generator class="increment">
+            	<!-- <param name="sequence">BOOK_SEQUENCE</param> -->
+            </generator>
+        </id>
+        <property name="bookName" type="java.lang.String">
+            <column name="BOOK_NAME" />
+        </property>
+        <property name="publishDate" type="java.util.Date">
+            <column name="PUBLISH_DATE" />
+        </property>
+        <property name="price" type="int">
+            <column name="PRICE" />
+        </property>
+        <property name="publisherCode" type="string">
+            <column name="publisher_code" />
+        </property>
+       <!--  <many-to-one name="publisher" class="com.rajni.hib.apress.mapping.Publisher" fetch="join">
+            <column name="PUBLISHER_CODE" />
+        </many-to-one> -->
+        <!-- <list name="chapters" inverse="false" table="BOOKCH2" lazy="true">
+            <key>
+                <column name="ISBN" />
+            </key>
+            <list-index></list-index>
+            <element type="string">
+                <column name="CHAPTERS" />
+            </element>
+        </list> -->
+    </class>
+</hibernate-mapping>
