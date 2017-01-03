@@ -19,11 +19,11 @@ public interface IUser {
 	public boolean isEnabled();
 	public void setEnabled(boolean enabled);
 	
-	public boolean isCredentialsNonExpired();
-	public void setCredentialsNonExpired(boolean credentialNonExpired);
+	public boolean isCredentialNonExpired();
+	public void setCredentialNonExpired(boolean credentialNonExpired);
 	
 	public boolean isAccountNonLocked();
-	public void setAccountNonLocaked(boolean accountNonLocked);
+	public void setAccountNonLocked(boolean accountNonLocked);
 	
 	public Set<IUserRole> getUserRoles();
 	public void setUserRoles(Set<IUserRole> userRoles);

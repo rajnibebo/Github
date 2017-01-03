@@ -51,8 +51,20 @@ public class UserService implements IUserService, UserDetailsService {
 		return null;
 	}
 	
-	private List<GrantedAuthority> getGrantedAuthorities(IUser user) {
+	protected List<GrantedAuthority> getGrantedAuthorities(IUser user) {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		return authorities;
+	}
+
+	@Override
+	public List<UserModel> listUsers() {
+		// TODO Auto-generated method stub
+		List<User> listOfUsers = userRepository.findAll();
+		
+		List<UserModel> list = new ArrayList<UserModel>();
+		for(User user : listOfUsers) {
+			list.add(userConverter.convertEntityToModel(user));
+		}
+		return list;
 	}
 }

@@ -7,6 +7,6 @@ package com.trantor.leavesys.entities;
  * @author rajni.ubhi
  *
  */
-public enum Roles {
+public enum RoleType {
 	ROLE_HR, ROLE_USER, ROLE_MANAGER
 }

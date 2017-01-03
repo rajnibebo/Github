@@ -43,6 +43,7 @@ public class User implements IUser {
 	private boolean credentialsNonExpired;
 	@Column(name = "IS_ACCOUNT_NON_LOCKED")
 	private boolean accountNonLocked;
+	@OneToMany(cascade = CascadeType.ALL, targetEntity = UserRole.class, fetch = FetchType.EAGER)
 	@JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
 	private Set<IUserRole> userRoles = new HashSet<IUserRole>();
 
@@ -137,13 +138,13 @@ public class User implements IUser {
 	}
 
 	@Override
-	public boolean isCredentialsNonExpired() {
+	public boolean isCredentialNonExpired() {
 		// TODO Auto-generated method stub
 		return credentialsNonExpired;
 	}
 
 	@Override
-	public void setCredentialsNonExpired(boolean credentialNonExpired) {
+	public void setCredentialNonExpired(boolean credentialNonExpired) {
 		// TODO Auto-generated method stub
 		this.credentialsNonExpired = credentialNonExpired;
 	}
@@ -155,7 +156,7 @@ public class User implements IUser {
 	}
 
 	@Override
-	public void setAccountNonLocaked(boolean accountNonLocked) {
+	public void setAccountNonLocked(boolean accountNonLocked) {
 		// TODO Auto-generated method stub
 		this.accountNonLocked = accountNonLocked;
 	}

@@ -3,6 +3,7 @@
  */
 package com.trantor.leavesys.models;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -30,6 +31,11 @@ public class UserModel implements IUser {
 	@XmlElement(name = "companyName")
 	private String companyName;
 
+	private String password;
+	private boolean enabled;
+	private boolean credentialNonExpired;
+	private boolean accountNonLocked;
+	private Set<IUserRole> roles = new HashSet<IUserRole>();
 	@Override
 	public Long getUserId() {
 		// TODO Auto-generated method stub
@@ -69,61 +75,52 @@ public class UserModel implements IUser {
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return null;
+		return password;
 	}
 
 	@Override
 	public void setPassword(String password) {
 		// TODO Auto-generated method stub
-		
+		this.password = password;
 	}
 
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return false;
+		return enabled;
 	}
 
 	@Override
 	public void setEnabled(boolean enabled) {
 		// TODO Auto-generated method stub
-		
+		this.enabled = enabled;
 	}
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isCredentialNonExpired() {
+		return credentialNonExpired;
 	}
 
-	@Override
-	public void setCredentialsNonExpired(boolean credentialNonExpired) {
-		// TODO Auto-generated method stub
-		
+	public void setCredentialNonExpired(boolean credentialNonExpired) {
+		this.credentialNonExpired = credentialNonExpired;
 	}
 
-	@Override
+	public void setAccountNonLocked(boolean accountNonLocked) {
+		this.accountNonLocked = accountNonLocked;
+	}
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void setAccountNonLocaked(boolean accountNonLocked) {
-		// TODO Auto-generated method stub
-		
+		return accountNonLocked;
 	}
 
 	@Override
 	public Set<IUserRole> getUserRoles() {
 		// TODO Auto-generated method stub
-		return null;
+		return roles;
 	}
 
 	@Override
 	public void setUserRoles(Set<IUserRole> userRoles) {
 		// TODO Auto-generated method stub
-		
+		this.roles = userRoles;
 	}
 
 }

@@ -30,4 +30,11 @@ public class UserController {
 		mav.addObject("userObj", model);
 		return mav;
 	}
+	
+	@RequestMapping(value="/all",method = RequestMethod.GET)
+	public ModelAndView getList() {
+		ModelAndView mav = new ModelAndView("list");
+		mav.addObject("listUsers", userService.listUsers());
+		return mav;
+	}
 }
