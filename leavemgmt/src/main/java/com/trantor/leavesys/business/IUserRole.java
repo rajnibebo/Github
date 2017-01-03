@@ -16,6 +16,6 @@ public interface IUserRole {
 	public Roles getUserRole();
 	public void setUserRole(Roles role);
 	
-	public IUser getUser();
-	public void setUser(IUser user);
+//	public IUser getUser();
+//	public void setUser(IUser user);
 }

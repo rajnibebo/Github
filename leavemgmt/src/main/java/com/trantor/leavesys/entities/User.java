@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -41,9 +43,12 @@ public class User implements IUser {
 	private boolean credentialsNonExpired;
 	@Column(name = "IS_ACCOUNT_NON_LOCKED")
 	private boolean accountNonLocked;
-	@OneToMany(cascade = CascadeType.ALL , fetch = FetchType.EAGER, mappedBy="user",targetEntity = UserRole.class)
+	@JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
 	private Set<IUserRole> userRoles = new HashSet<IUserRole>();
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.trantor.leavesys.business.IUser#getUserId()
 	 */
 	@Override
@@ -52,7 +57,9 @@ public class User implements IUser {
 		return userId;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.trantor.leavesys.business.IUser#setUserId(java.lang.Long)
 	 */
 	@Override
@@ -61,7 +68,9 @@ public class User implements IUser {
 		this.userId = id;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.trantor.leavesys.business.IUser#getUserName()
 	 */
 	@Override
@@ -70,7 +79,9 @@ public class User implements IUser {
 		return userName;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.trantor.leavesys.business.IUser#setUserName(java.lang.String)
 	 */
 	@Override
@@ -79,7 +90,9 @@ public class User implements IUser {
 		this.userName = userName;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.trantor.leavesys.business.IUser#getCompanyName()
 	 */
 	@Override
@@ -88,7 +101,9 @@ public class User implements IUser {
 		return companyName;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.trantor.leavesys.business.IUser#setCompanyName(java.lang.String)
 	 */
 	@Override

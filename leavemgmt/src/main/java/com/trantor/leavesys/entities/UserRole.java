@@ -9,10 +9,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.trantor.leavesys.business.IUser;
 import com.trantor.leavesys.business.IUserRole;
 
 /**
@@ -20,7 +18,7 @@ import com.trantor.leavesys.business.IUserRole;
  *
  */
 @Entity
-@Table(name = "USER_ROLES")
+@Table(name = "ROLES")
 public class UserRole implements IUserRole {
 	@Id
 	@GeneratedValue
@@ -29,9 +27,7 @@ public class UserRole implements IUserRole {
 	@Column(name = "ROLE_NAME")
 	@Enumerated(EnumType.STRING)
 	private Roles role;
-	@ManyToOne(targetEntity = User.class)
-	private IUser user;
-
+	
 	@Override
 	public Long getUserRoleId() {
 		// TODO Auto-generated method stub
@@ -54,18 +50,6 @@ public class UserRole implements IUserRole {
 	public void setUserRole(Roles role) {
 		// TODO Auto-generated method stub
 		this.role = role;
-	}
-
-	@Override
-	public IUser getUser() {
-		// TODO Auto-generated method stub
-		return user;
-	}
-
-	@Override
-	public void setUser(IUser user) {
-		// TODO Auto-generated method stub
-		this.user = user;
 	}
 
 }
