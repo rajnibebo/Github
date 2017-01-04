@@ -14,7 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.trantor.leavesys.business.IUser;
@@ -43,7 +43,7 @@ public class User implements IUser {
 	private boolean credentialsNonExpired;
 	@Column(name = "IS_ACCOUNT_NON_LOCKED")
 	private boolean accountNonLocked;
-	@OneToMany(cascade = CascadeType.ALL, targetEntity = UserRole.class, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL, targetEntity = UserRole.class, fetch = FetchType.EAGER)
 	@JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
 	private Set<IUserRole> userRoles = new HashSet<IUserRole>();
 

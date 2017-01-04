@@ -30,8 +30,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/")
 				.access("hasRole('ROLE_USER')").and().formLogin()
-				.loginPage("/login").loginProcessingUrl("/login")
-				.usernameParameter("userId").passwordParameter("password")
+				.loginPage("/custom_login").loginProcessingUrl("/custom_login")
+				.failureUrl("/custom_login?error").usernameParameter("userid")
+				.passwordParameter("password").defaultSuccessUrl("/home",true).and().logout()
+				.logoutUrl("/login?logout").logoutSuccessUrl("/custom_login")
 				.and().csrf().disable();
 	}
 }
