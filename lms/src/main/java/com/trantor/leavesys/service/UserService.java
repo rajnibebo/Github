@@ -55,6 +55,7 @@ public class UserService implements IUserService, UserDetailsService {
 		if (user == null) {
 			throw new UsernameNotFoundException("Username not found !!!!");
 		}
+		System.out.println("Calling service@@@@@");
 		System.out.println("User is not null :: Got from database !!!!!"+user.getUserName()+"---"+user.getPassword());
 		return new org.springframework.security.core.userdetails.User(
 				user.getUserName(), user.getPassword(), user.isEnabled(),

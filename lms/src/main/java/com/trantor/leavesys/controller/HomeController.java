@@ -28,7 +28,7 @@ public class HomeController {
 		mav.addObject("userObj", model);
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if(auth != null) {
-			System.out.println("Authentication object still exists");
+			System.out.println("From home :::Authentication object still exists");
 			System.out.println("Username ::"+auth.getName()+","+auth.getCredentials());
 		}
 		return mav;

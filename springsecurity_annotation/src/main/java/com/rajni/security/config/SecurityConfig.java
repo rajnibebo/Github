@@ -18,10 +18,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder authBuilder) throws Exception {
-		authBuilder.inMemoryAuthentication().withUser("Rajni").password("rajni@").roles("ADMIN");
+	public void configureGlobal(AuthenticationManagerBuilder authBuilder)
+			throws Exception {
+		authBuilder.inMemoryAuthentication().withUser("Rajni")
+				.password("rajni@").roles("ADMIN");
 	}
+
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')").and().formLogin();
+		http.authorizeRequests().anyRequest().authenticated().and().formLogin()
+				.permitAll();
 	}
 }
