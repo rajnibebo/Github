@@ -23,7 +23,7 @@ public class UserController {
 	@Autowired
 	private IUserService userService;
 	
-	@RequestMapping(value = "/get", method = RequestMethod.POST)
+	@RequestMapping(value ="/get",method=RequestMethod.POST)
 	public ModelAndView getUserModel(@ModelAttribute("userObj") UserModel userModel) {
 		ModelAndView mav = new ModelAndView("userHome");
 		UserModel model = userService.getUserModel(userModel);

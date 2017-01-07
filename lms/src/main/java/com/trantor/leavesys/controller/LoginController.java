@@ -20,39 +20,37 @@ import org.springframework.web.servlet.ModelAndView;
  *
  */
 @Controller
-@RequestMapping("/custom_login")
+@RequestMapping("/")
 public class LoginController {
-
-	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView login(@RequestParam(value = "error", required = false) String error) {
-		System.out.println("Inside login !!!!!!!!");
-		ModelAndView model = new ModelAndView();
-
-		if (error != null) {
-			model.addObject("error", "Invalid username and password!");
-		}
-		model.setViewName("login");
-
-		return model;
-
-	}
-
-	@RequestMapping(value="/logout",method = RequestMethod.GET)
-	public ModelAndView logout(@RequestParam(value = "logout", required = false) String error,HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("Inside logout !!!!!!!!");
-		ModelAndView model = new ModelAndView();
-
-		if (error != null) {
-			model.addObject("logout", "Invalid username and password!");
-		}
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    if (auth != null){    
-	        new SecurityContextLogoutHandler().logout(request, response, auth);
-	    }
-		model.setViewName("login");
+	
+	@RequestMapping(value = "/custom_login", method = RequestMethod.GET)
+	public ModelAndView login(
+			@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value="logout",required = false) String logout) {
 		
-		return model;
-
+		System.out.println("Inside the login controller");
+		ModelAndView mav = new ModelAndView("pages/examples/login");
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if(auth != null) {
+			System.out.println("Authentication object still exists");
+			System.out.println("Username ::"+auth.getName()+","+auth.getCredentials());
+		}
+		if(error != null) {
+			mav.addObject("error", "Invalid Details !! Please try again");
+		}
+		if(logout != null) {
+			mav.addObject("logout", "You have logged out of the application !!!");
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/custom_logout",method = RequestMethod.GET)
+	public String logout(HttpServletRequest request , HttpServletResponse response) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if(auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
+		return "redirect:/custom_login?logout";
 	}
 
 }

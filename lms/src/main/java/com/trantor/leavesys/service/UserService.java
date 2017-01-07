@@ -29,6 +29,7 @@ import com.trantor.leavesys.service.api.IUserService;
  *
  */
 @Service("userService")
+@Transactional
 public class UserService implements IUserService, UserDetailsService {
 
 	@Resource(name = "userRepository")
@@ -37,7 +38,6 @@ public class UserService implements IUserService, UserDetailsService {
 	@Resource(name = "userConverter")
 	private IEntityConverter<UserModel, User> userConverter;
 
-	@Transactional(readOnly = true)
 	public UserModel getUserModel(UserModel userModel) {
 		if (userModel != null && userModel.getUserId() != null) {
 			User entity = userRepository.findOne(userModel.getUserId());
@@ -47,33 +47,34 @@ public class UserService implements IUserService, UserDetailsService {
 	}
 
 	@Override
-	@Transactional(readOnly = true)
-	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String userId)
+			throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
+		System.out.println("Loading username from loadByUserName through spring security");
 		IUser user = userRepository.getUserByUserName(userId);
 		if (user == null) {
-			throw new UsernameNotFoundException("This user does not exist");
+			throw new UsernameNotFoundException("Username not found !!!!");
 		}
-		org.springframework.security.core.userdetails.User authUser = new org.springframework.security.core.userdetails.User(
-				user.getUserName(), user.getPassword(), user.isEnabled(), user.isAccountNonLocked(),
-				user.isCredentialNonExpired(), user.isAccountNonLocked(), getGrantedAuthorities(user));
-		return authUser;
+		System.out.println("User is not null :: Got from database !!!!!"+user.getUserName()+"---"+user.getPassword());
+		return new org.springframework.security.core.userdetails.User(
+				user.getUserName(), user.getPassword(), user.isEnabled(),
+				user.isAccountNonLocked(), user.isCredentialNonExpired(),
+				user.isAccountNonLocked(), getGrantedAuthorities(user));
 	}
 
 	private List<GrantedAuthority> getGrantedAuthorities(IUser user) {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		for(IUserRole role : user.getUserRoles()) {
-			GrantedAuthority auth = new SimpleGrantedAuthority(role.getUserRole().name());
-			authorities.add(auth);
+		for (IUserRole userRole : user.getUserRoles()) {
+			authorities.add(new SimpleGrantedAuthority(userRole.getUserRole().name()));
 		}
 		return authorities;
 	}
 
 	@Override
-	@Transactional(readOnly = true)
 	public List<UserModel> listUsers() {
 		// TODO Auto-generated method stub
 		List<User> listOfUsers = userRepository.findAll();
+
 		List<UserModel> list = new ArrayList<UserModel>();
 		for (User user : listOfUsers) {
 			list.add(userConverter.convertEntityToModel(user));

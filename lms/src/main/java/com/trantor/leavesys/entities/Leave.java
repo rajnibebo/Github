@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -22,7 +21,7 @@ import com.trantor.leavesys.business.ILeave;
 @Table(name = "LEAVE")
 public class Leave implements ILeave {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue
 	@Column(name = "LEAVE_ID")
 	private Long leaveId;
 	@Column(name = "LEAVE_TYPE")

@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -30,7 +29,7 @@ import com.trantor.leavesys.business.IUserLeave;
 @Table(name = "USER_APPLIED_LEAVE")
 public class UserLeave implements IUserLeave {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue
 	@Column(name = "USER_LEAVE_ID")
 	private Long userLeaveId;
 	@ManyToOne(cascade = CascadeType.ALL, targetEntity = Leave.class)

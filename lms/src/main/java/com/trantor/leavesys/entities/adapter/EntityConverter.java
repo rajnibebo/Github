@@ -3,6 +3,10 @@
  */
 package com.trantor.leavesys.entities.adapter;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.trantor.leavesys.business.IUserRole;
 import com.trantor.leavesys.entities.Leave;
 import com.trantor.leavesys.entities.User;
 import com.trantor.leavesys.entities.UserLeave;
@@ -11,11 +15,6 @@ import com.trantor.leavesys.models.LeaveModel;
 import com.trantor.leavesys.models.RoleModel;
 import com.trantor.leavesys.models.UserLeaveModel;
 import com.trantor.leavesys.models.UserModel;
-
-import java.util.HashSet;
-import java.util.Set;
-
-import com.trantor.leavesys.business.IUserRole;
 
 /**
  * @author rajni.ubhi

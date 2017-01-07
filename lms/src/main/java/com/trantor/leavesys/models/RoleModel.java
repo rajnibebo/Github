@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.trantor.leavesys.models;
 
 import com.trantor.leavesys.business.IUserRole;
