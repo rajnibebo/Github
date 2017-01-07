@@ -7,6 +7,6 @@ package com.trantor.leavesys.entities;
  * @author rajni.ubhi
  *
  */
-public enum LeaveStatus {
-	APPROVED, NOT_APPROVED , CANCELLED
+public enum RoleType {
+	ROLE_HR, ROLE_USER, ROLE_MANAGER
 }

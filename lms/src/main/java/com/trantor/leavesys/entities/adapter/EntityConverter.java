@@ -6,9 +6,16 @@ package com.trantor.leavesys.entities.adapter;
 import com.trantor.leavesys.entities.Leave;
 import com.trantor.leavesys.entities.User;
 import com.trantor.leavesys.entities.UserLeave;
+import com.trantor.leavesys.entities.UserRole;
 import com.trantor.leavesys.models.LeaveModel;
+import com.trantor.leavesys.models.RoleModel;
 import com.trantor.leavesys.models.UserLeaveModel;
 import com.trantor.leavesys.models.UserModel;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import com.trantor.leavesys.business.IUserRole;
 
 /**
  * @author rajni.ubhi
@@ -27,6 +34,10 @@ public class EntityConverter {
 	public static UserLeaveConverter getUserLeaveConverter() {
 		return new UserLeaveConverter();
 	}
+	
+	public static RoleConverter getRoleConverter() {
+		return new RoleConverter();
+	}
 	private static class UserConverter implements IEntityConverter<UserModel, User>{
 
 		@Override
@@ -35,6 +46,17 @@ public class EntityConverter {
 			User user = new User();
 			user.setCompanyName(model.getCompanyName());
 			user.setUserName(model.getUserName());
+			user.setAccountNonLocked(model.isAccountNonLocked());
+			user.setCredentialNonExpired(model.isCredentialNonExpired());
+			user.setEnabled(model.isEnabled());
+			user.setPassword(model.getPassword());
+			
+			Set<IUserRole> setRoles = new HashSet<IUserRole>();
+			for(IUserRole role : model.getUserRoles()) {
+				IUserRole convertedRole = getRoleConverter().convertModelToEntity((RoleModel)role);
+				setRoles.add(convertedRole);
+			}
+			user.setUserRoles(setRoles); // must be retrieved from entity converter
 			return user;
 		}
 
@@ -45,6 +67,17 @@ public class EntityConverter {
 			model.setUserId(entity.getUserId());
 			model.setUserName(entity.getUserName());
 			model.setCompanyName(entity.getCompanyName());
+			model.setAccountNonLocked(entity.isAccountNonLocked());
+			model.setCredentialNonExpired(entity.isCredentialNonExpired());
+			model.setEnabled(entity.isEnabled());
+			model.setPassword(entity.getPassword());
+			
+			Set<IUserRole> setRoles = new HashSet<IUserRole>();
+			for(IUserRole role : entity.getUserRoles()) {
+				IUserRole convertedRole = getRoleConverter().convertEntityToModel((UserRole) role);
+				setRoles.add(convertedRole);
+			}
+			model.setUserRoles(setRoles);
 			return model;
 		}
 
@@ -130,6 +163,35 @@ public class EntityConverter {
 			UserLeave userLeave = convertModelToEntity(model);
 			userLeave.setUserLeaveId(model.getUserLeaveId());
 			return userLeave;
+		}
+		
+	}
+	
+	private static class RoleConverter implements IEntityConverter<RoleModel, UserRole> {
+
+		@Override
+		public UserRole convertModelToEntity(RoleModel model) {
+			// TODO Auto-generated method stub
+			UserRole role = new UserRole();
+			role.setUserRole(model.getUserRole());
+			return role;
+		}
+
+		@Override
+		public RoleModel convertEntityToModel(UserRole entity) {
+			// TODO Auto-generated method stub
+			RoleModel roleModel = new RoleModel();
+			roleModel.setUserRoleId(entity.getUserRoleId());
+			roleModel.setUserRole(entity.getUserRole());
+			return roleModel;
+		}
+
+		@Override
+		public UserRole convertModelToEntityUsingID(RoleModel model) {
+			// TODO Auto-generated method stub
+			UserRole role = convertModelToEntity(model);
+			role.setUserRoleId(model.getUserRoleId());
+			return role;
 		}
 		
 	}

@@ -56,7 +56,7 @@ public class UserLeaveController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ModelAndView addAppliedLeave(@ModelAttribute("userLeaveModel") UserLeaveModel userLeaveModel, BindingResult bindingResult) {
 		System.out.println("Inside Applied Leave");
 		if(bindingResult.hasErrors()) {

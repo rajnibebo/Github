@@ -12,6 +12,7 @@
 		<spring.version>4.3.5.RELEASE</spring.version>
 		<spring.data.version>1.10.5.RELEASE</spring.data.version>
 		<hibernate.version>5.2.5.Final</hibernate.version>
+		<security.version>4.2.1.RELEASE</security.version>
 	</properties>
 
 	<dependencies>
@@ -66,6 +67,30 @@
 			<artifactId>ojdbc14</artifactId>
 			<version>10.2.0.4</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-core</artifactId>
+    <version>${security.version}</version>
+</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-web</artifactId>
+    <version>${security.version}</version>
+</dependency>
+				<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-config</artifactId>
+    <version>${security.version}</version>
+</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-taglibs</artifactId>
+    <version>${security.version}</version>
+</dependency>
 		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

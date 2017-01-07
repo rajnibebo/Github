@@ -23,11 +23,18 @@ public class UserController {
 	@Autowired
 	private IUserService userService;
 	
-	@RequestMapping(value ="/get",method=RequestMethod.POST)
+	@RequestMapping(value = "/get", method = RequestMethod.POST)
 	public ModelAndView getUserModel(@ModelAttribute("userObj") UserModel userModel) {
 		ModelAndView mav = new ModelAndView("userHome");
 		UserModel model = userService.getUserModel(userModel);
 		mav.addObject("userObj", model);
+		return mav;
+	}
+	
+	@RequestMapping(value="/all",method = RequestMethod.GET)
+	public ModelAndView getList() {
+		ModelAndView mav = new ModelAndView("list");
+		mav.addObject("listUsers", userService.listUsers());
 		return mav;
 	}
 }

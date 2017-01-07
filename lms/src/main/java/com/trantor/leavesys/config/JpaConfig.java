@@ -60,7 +60,7 @@ public class JpaConfig {
 	private Properties jpaProperties() {
 		Properties props = new Properties();
 		props.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-	//	props.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+		props.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
 		props.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
 		return props;
 	}
