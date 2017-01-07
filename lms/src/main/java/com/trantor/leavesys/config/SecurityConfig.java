@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
@@ -27,8 +28,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private UserDetailsService userService;
 	@Autowired
 	private DataSource dataSource;
-//	@Autowired
-//	private AuthenticationFailureHandler failureHandler;
+
+	// @Autowired
+	// private AuthenticationFailureHandler failureHandler;
 
 	@Autowired
 	public void configureGlobalSecurity(AuthenticationManagerBuilder builder)
@@ -42,7 +44,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginPage("/custom_login").loginProcessingUrl("/custom_login")
 				.failureUrl("/custom_login?error").usernameParameter("userid")
 				.passwordParameter("password").defaultSuccessUrl("/home", true)
-				.and().rememberMe().rememberMeParameter("remember_me").tokenRepository(persistentTokenRepository())
+				.and().rememberMe().rememberMeParameter("remember_me")
+				.rememberMeCookieName("remember-me-cookie")
+				.tokenRepository(persistentTokenRepository())
 				.tokenValiditySeconds(86400).and()
 				// .logout()
 				// // logoutUrl("/login?logout")
@@ -50,8 +54,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				// .logoutSuccessUrl("/custom_login").deleteCookies("JSESSIONID")
 				// .invalidateHttpSession(true).and()
 				.csrf().disable();
+
+		http.sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+				.maximumSessions(1).expiredUrl("/404");
 	}
-	
+
 	@Bean
 	public PersistentTokenRepository persistentTokenRepository() {
 		JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();

@@ -48,6 +48,7 @@ public class LoginController {
 	public String logout(HttpServletRequest request , HttpServletResponse response) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if(auth != null) {
+			System.out.println("Going to logout !!!");
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
 		return "redirect:/custom_login?logout";
